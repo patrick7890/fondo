@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipocuotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipocuotaLabel_idtipoCuota}" for="idtipoCuota" />
+                    <h:inputText id="idtipoCuota" value="#{tipocuotaController.selected.idtipoCuota}" title="#{bundle.EditTipocuotaTitle_idtipoCuota}" required="true" requiredMessage="#{bundle.EditTipocuotaRequiredMessage_idtipoCuota}"/>
+                    <h:outputLabel value="#{bundle.EditTipocuotaLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{tipocuotaController.selected.tipo}" title="#{bundle.EditTipocuotaTitle_tipo}" required="true" requiredMessage="#{bundle.EditTipocuotaRequiredMessage_tipo}"/>
+                    <h:outputLabel value="#{bundle.EditTipocuotaLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{tipocuotaController.selected.valor}" title="#{bundle.EditTipocuotaTitle_valor}" required="true" requiredMessage="#{bundle.EditTipocuotaRequiredMessage_valor}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tipocuotaController.update}" value="#{bundle.EditTipocuotaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipocuotaViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipocuotaController.prepareList}" value="#{bundle.EditTipocuotaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipocuotaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

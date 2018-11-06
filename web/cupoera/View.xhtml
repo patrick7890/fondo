@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCupoeraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCupoeraLabel_idcupoera}"/>
+                    <h:outputText value="#{cupoeraController.selected.idcupoera}" title="#{bundle.ViewCupoeraTitle_idcupoera}"/>
+                    <h:outputText value="#{bundle.ViewCupoeraLabel_fechaInicio}"/>
+                    <h:outputText value="#{cupoeraController.selected.fechaInicio}" title="#{bundle.ViewCupoeraTitle_fechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCupoeraLabel_fechaTermino}"/>
+                    <h:outputText value="#{cupoeraController.selected.fechaTermino}" title="#{bundle.ViewCupoeraTitle_fechaTermino}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCupoeraLabel_desembolso}"/>
+                    <h:outputText value="#{cupoeraController.selected.desembolso}" title="#{bundle.ViewCupoeraTitle_desembolso}"/>
+                    <h:outputText value="#{bundle.ViewCupoeraLabel_tipoCuponeraidtipoCuponera}"/>
+                    <h:outputText value="#{cupoeraController.selected.tipoCuponeraidtipoCuponera}" title="#{bundle.ViewCupoeraTitle_tipoCuponeraidtipoCuponera}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cupoeraController.destroyAndView}" value="#{bundle.ViewCupoeraDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCupoeraEditLink}"/>
+                <br />
+                <h:commandLink action="#{cupoeraController.prepareCreate}" value="#{bundle.ViewCupoeraCreateLink}" />
+                <br />
+                <h:commandLink action="#{cupoeraController.prepareList}" value="#{bundle.ViewCupoeraShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCupoeraIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

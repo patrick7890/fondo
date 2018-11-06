@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSocioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSocioLabel_socioPK_idsocio}" for="socioPK_idsocio" />
+                    <h:inputText id="socioPK_idsocio" value="#{socioController.selected.socioPK.idsocio}" title="#{bundle.EditSocioTitle_socioPK_idsocio}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_socioPK_idsocio}"/>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_rutsocio}" for="rutsocio" />
+                    <h:inputText id="rutsocio" value="#{socioController.selected.rutsocio}" title="#{bundle.EditSocioTitle_rutsocio}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_rutsocio}"/>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{socioController.selected.nombre}" title="#{bundle.EditSocioTitle_nombre}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{socioController.selected.apellido}" title="#{bundle.EditSocioTitle_apellido}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_apellido}"/>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_telefonofo}" for="telefonofo" />
+                    <h:inputText id="telefonofo" value="#{socioController.selected.telefonofo}" title="#{bundle.EditSocioTitle_telefonofo}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_telefonofo}"/>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_activo}" for="activo" />
+                    <h:inputText id="activo" value="#{socioController.selected.activo}" title="#{bundle.EditSocioTitle_activo}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_activo}"/>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_cargoIdcargo}" for="cargoIdcargo" />
+                    <h:selectOneMenu id="cargoIdcargo" value="#{socioController.selected.cargoIdcargo}" title="#{bundle.EditSocioTitle_cargoIdcargo}" >
+                        <f:selectItems value="#{cargoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSocioLabel_cupoera}" for="cupoera" />
+                    <h:selectOneMenu id="cupoera" value="#{socioController.selected.cupoera}" title="#{bundle.EditSocioTitle_cupoera}" required="true" requiredMessage="#{bundle.EditSocioRequiredMessage_cupoera}">
+                        <f:selectItems value="#{cupoeraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{socioController.update}" value="#{bundle.EditSocioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSocioViewLink}"/>
+                <br />
+                <h:commandLink action="#{socioController.prepareList}" value="#{bundle.EditSocioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSocioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

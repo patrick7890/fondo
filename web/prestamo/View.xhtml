@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPrestamoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPrestamoLabel_idprestamo}"/>
+                    <h:outputText value="#{prestamoController.selected.idprestamo}" title="#{bundle.ViewPrestamoTitle_idprestamo}"/>
+                    <h:outputText value="#{bundle.ViewPrestamoLabel_valor}"/>
+                    <h:outputText value="#{prestamoController.selected.valor}" title="#{bundle.ViewPrestamoTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewPrestamoLabel_mes}"/>
+                    <h:outputText value="#{prestamoController.selected.mes}" title="#{bundle.ViewPrestamoTitle_mes}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPrestamoLabel_pagada}"/>
+                    <h:outputText value="#{prestamoController.selected.pagada}" title="#{bundle.ViewPrestamoTitle_pagada}"/>
+                    <h:outputText value="#{bundle.ViewPrestamoLabel_socio}"/>
+                    <h:outputText value="#{prestamoController.selected.socio}" title="#{bundle.ViewPrestamoTitle_socio}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{prestamoController.destroyAndView}" value="#{bundle.ViewPrestamoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPrestamoEditLink}"/>
+                <br />
+                <h:commandLink action="#{prestamoController.prepareCreate}" value="#{bundle.ViewPrestamoCreateLink}" />
+                <br />
+                <h:commandLink action="#{prestamoController.prepareList}" value="#{bundle.ViewPrestamoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPrestamoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

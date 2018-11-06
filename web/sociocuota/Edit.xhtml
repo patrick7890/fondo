@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSociocuotaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSociocuotaLabel_sociocuotaid}" for="sociocuotaid" />
+                    <h:inputText id="sociocuotaid" value="#{sociocuotaController.selected.sociocuotaid}" title="#{bundle.EditSociocuotaTitle_sociocuotaid}" required="true" requiredMessage="#{bundle.EditSociocuotaRequiredMessage_sociocuotaid}"/>
+                    <h:outputLabel value="#{bundle.EditSociocuotaLabel_cuotaIdcuota}" for="cuotaIdcuota" />
+                    <h:selectOneMenu id="cuotaIdcuota" value="#{sociocuotaController.selected.cuotaIdcuota}" title="#{bundle.EditSociocuotaTitle_cuotaIdcuota}" required="true" requiredMessage="#{bundle.EditSociocuotaRequiredMessage_cuotaIdcuota}">
+                        <f:selectItems value="#{cuotaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSociocuotaLabel_socio}" for="socio" />
+                    <h:selectOneMenu id="socio" value="#{sociocuotaController.selected.socio}" title="#{bundle.EditSociocuotaTitle_socio}" required="true" requiredMessage="#{bundle.EditSociocuotaRequiredMessage_socio}">
+                        <f:selectItems value="#{socioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{sociocuotaController.update}" value="#{bundle.EditSociocuotaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSociocuotaViewLink}"/>
+                <br />
+                <h:commandLink action="#{sociocuotaController.prepareList}" value="#{bundle.EditSociocuotaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSociocuotaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

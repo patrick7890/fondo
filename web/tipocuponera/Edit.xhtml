@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipocuponeraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipocuponeraLabel_idtipoCuponera}" for="idtipoCuponera" />
+                    <h:inputText id="idtipoCuponera" value="#{tipocuponeraController.selected.idtipoCuponera}" title="#{bundle.EditTipocuponeraTitle_idtipoCuponera}" required="true" requiredMessage="#{bundle.EditTipocuponeraRequiredMessage_idtipoCuponera}"/>
+                    <h:outputLabel value="#{bundle.EditTipocuponeraLabel_codigocuponera}" for="codigocuponera" />
+                    <h:inputText id="codigocuponera" value="#{tipocuponeraController.selected.codigocuponera}" title="#{bundle.EditTipocuponeraTitle_codigocuponera}" required="true" requiredMessage="#{bundle.EditTipocuponeraRequiredMessage_codigocuponera}"/>
+                    <h:outputLabel value="#{bundle.EditTipocuponeraLabel_subBanco}" for="subBanco" />
+                    <h:inputText id="subBanco" value="#{tipocuponeraController.selected.subBanco}" title="#{bundle.EditTipocuponeraTitle_subBanco}" required="true" requiredMessage="#{bundle.EditTipocuponeraRequiredMessage_subBanco}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tipocuponeraController.update}" value="#{bundle.EditTipocuponeraSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipocuponeraViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipocuponeraController.prepareList}" value="#{bundle.EditTipocuponeraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipocuponeraIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

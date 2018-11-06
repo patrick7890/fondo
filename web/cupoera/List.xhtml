@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCupoeraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCupoeraEmpty}" rendered="#{cupoeraController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cupoeraController.items.rowCount > 0}">
+                    <h:outputText value="#{cupoeraController.pagination.pageFirstItem + 1}..#{cupoeraController.pagination.pageLastItem + 1}/#{cupoeraController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cupoeraController.previous}" value="#{bundle.Previous} #{cupoeraController.pagination.pageSize}" rendered="#{cupoeraController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cupoeraController.next}" value="#{bundle.Next} #{cupoeraController.pagination.pageSize}" rendered="#{cupoeraController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cupoeraController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCupoeraTitle_idcupoera}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcupoera}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCupoeraTitle_fechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCupoeraTitle_fechaTermino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaTermino}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCupoeraTitle_desembolso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.desembolso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCupoeraTitle_tipoCuponeraidtipoCuponera}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoCuponeraidtipoCuponera}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cupoeraController.prepareView}" value="#{bundle.ListCupoeraViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cupoeraController.prepareEdit}" value="#{bundle.ListCupoeraEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cupoeraController.destroy}" value="#{bundle.ListCupoeraDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cupoeraController.prepareCreate}" value="#{bundle.ListCupoeraCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCupoeraIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
